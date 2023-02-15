@@ -1,16 +1,3 @@
-// const express = require('express');
-// const { productController } = require('../controllers');
-
-// const router = express.Router();
-
-// router.get('/', productController.allProducts);
-
-// router.get('/:id', productController.productById);
-
-// router.post('/', productController.createProduct);
-
-// module.exports = router;
-
 const express = require('express');
 const { productControler } = require('../controllers');
 const validateName = require('../middlewares/validateName');

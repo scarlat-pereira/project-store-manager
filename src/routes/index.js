@@ -1,11 +1,7 @@
-// const productRouter = require('./product.routes');
-
-// module.exports = {
-//   productRouter,
-// };
-
 const productRouter = require('./productRoutes');
+const saleRouter = require('./saleRoutes');
 
 module.exports = {
   productRouter,
+  saleRouter,
 };
