@@ -1,6 +1,27 @@
 const camelize = require('camelize');
 const connection = require('./connection');
 
+// const insertSale = async () => {
+//   const [{ insertId }] = await connection.execute(
+//     'INSERT INTO StorageManager.sales (id, date) VALUES (default, default)', [],
+//   );
+//   return insertId;
+// };
+
+// const insertSaleProduct = async (saleId, productId, quantity) => {
+//   const [result] = await connection.execute(
+//     'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
+//     [saleId, productId, quantity],
+//   );
+//   return camelize(result);
+// };
+
+// const findProductId = async (id) => {
+//   const [result] = await connection.execute(`
+//   SELECT product_id FROM StoreManager.sale_products WHERE product_id = ?`, [id]);
+//   return result;
+// };
+
 const allSales = async () => {
    const [result] = await connection.execute(
     `
@@ -30,6 +51,9 @@ const salesById = async (id) => {
 };
 
 module.exports = {
+  // insertSale,
+  // insertSaleProduct,
+  // findProductId,
   allSales,
   salesById,
 };

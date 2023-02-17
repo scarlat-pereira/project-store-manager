@@ -4,10 +4,12 @@ const validateName = require('../middlewares/validateName');
 
 const router = express.Router();
 
-router.get('/', productControler.allProducts); // dessa forma é redundate
+router.get('/', productControler.allProducts); 
 
 router.get('/:id', productControler.productById);
 
 router.post('/', validateName, productControler.createProduct);
+
+router.put('/:id', validateName, productControler.updateById);
 
 module.exports = router;

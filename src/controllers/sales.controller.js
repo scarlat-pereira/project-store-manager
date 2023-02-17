@@ -1,4 +1,14 @@
+// const { insertSale } = require('../models/sales.model');
 const { saleService } = require('../services');
+
+// const createController = async (req, res) => {
+//   const products = req.body;
+//   const response = await insertSale(products);
+//   if (response.type) {
+//     return res.status(response.type).json({ message: response.message });
+//   }
+//   return res.status(201).json(response.message);
+// };
 
 const allSales = async (_req, res) => {
   const { result } = await saleService.allSales();
@@ -15,6 +25,7 @@ const salesById = async (req, res) => {
 };
 
 module.exports = {
+  // createController,
   allSales,
   salesById,
 };

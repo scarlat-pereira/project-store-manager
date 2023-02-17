@@ -8,6 +8,13 @@ const { error } = idSchema.validate(id);
   return { type: null, message: '' };
 };
 
+// const validateSale = (sale) => {
+//   const { error } = saleSchema.validate(sale);
+//   if (error) return { type: 'INVALID_VALUE', message: error.message };
+//   return { type: null, message: '' };
+// };
+
 module.exports = {
   validateId,
+  // validateSale,
 };
