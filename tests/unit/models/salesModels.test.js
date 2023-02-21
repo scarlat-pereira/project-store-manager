@@ -22,11 +22,11 @@ describe('Testes unitários da camada Model', function () {
   });
 
     it('É possível deletar uma venda existente no banco de dados', async function () {
-    sinon.stub(conn, 'execute').resolves([{ affectedRows: 1 }]);
+    sinon.stub(conn, 'execute').resolves(undefined);
       
     const result = await saleModel.deleteById(1);
       
-    expect(result.affectedRows).to.be.equal(1);
+    expect(result).to.be.equal(undefined);
   });
 
     afterEach(function () {

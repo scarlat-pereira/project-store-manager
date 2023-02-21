@@ -42,7 +42,7 @@ const salesById = async (id) => {
       INNER JOIN StoreManager.sales_products AS sp
       ON sp.sale_id = s.id
       WHERE sp.sale_id = ?
-      ORDER BY sp.sale_id ASC, sp.product_id  ASC
+      ORDER BY sp.sale_id, sp.product_id
       `,
 
     [id],
@@ -50,24 +50,23 @@ const salesById = async (id) => {
   return camelize(result);
 };
 
-// const updateById = async (quantity, id, productId) => {
-//   await connection.execute(
-//   `
-//     UPDATE StoreManager.sales_products
-//     SET quantity = ?
-//     WHERE sale_id = ?,
-//     AND product_id = ?`,
-//     [quantity, id, productId],
-//   );
-//     return { quantity, id };
-// };
+const updateById = async (quantity, id, productId) => {
+  await connection.execute(
+  `
+    UPDATE StoreManager.sales_products
+    SET quantity = ?
+    WHERE sale_id = ?,
+    AND product_id = ?`,
+    [quantity, id, productId],
+  );
+    return { quantity, id };
+};
 
 const deleteById = async (id) => { 
-  const [result] = await connection.execute(
+  await connection.execute(
     'DELETE FROM StoreManager.sales_products WHERE sale_id = ?',
     [id],
   );
-  return result;
 };
 
 module.exports = {
@@ -76,6 +75,6 @@ module.exports = {
   findProductId,
   allSales,
   salesById,
-  // updateById,
+  updateById,
   deleteById,
 };
