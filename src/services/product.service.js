@@ -35,10 +35,20 @@ const deleteById = async (id) => {
   return { type: null, message: '' };
 };
 
+const selectByName = async (q) => {
+  if (!q) {
+    const productsSearch = await productModel.allProducts();
+    return { type: null, message: productsSearch };
+  }
+  const product = await productModel.selectByName(q);
+  return { type: null, message: product };
+};
+
 module.exports = {
   allProducts,
   productById,
   createProduct,
   updateById,
   deleteById,
+  selectByName,
 };

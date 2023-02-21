@@ -33,10 +33,19 @@ await conn.execute(
   );
 };
 
+const selectByName = async (q) => {
+  const [result] = await conn.execute(
+    `SELECT * FROM StoreManager.products WHERE name LIKE '%${q}%'`,
+    [q],
+  );
+  return result;
+};
+
 module.exports = {
   allProducts,
   productById,  
   createProduct,
   updateById,
   deleteById,
+  selectByName,
 };
