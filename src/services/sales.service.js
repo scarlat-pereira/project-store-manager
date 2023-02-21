@@ -47,8 +47,24 @@ const insertSale = async (sales) => {
   return { type: null, message: response };
 };
 
+// const updateById = async (quantity, id, productId) => { 
+//   const sale = await saleModel.updateById(quantity, id, productId);
+//   if (!sale) return { type: 404, message: 'Product not found' };
+  
+//   return { type: null, message: sale };
+// };
+
+const deleteById = async (id) => {
+  const sale = await saleModel.salesById(id);
+  if (!sale.length) return { type: 404, message: 'Sale not found' };
+  await saleModel.deleteById(id);
+  return { type: null, message: '' };
+}; 
+
 module.exports = {
   allSales,
   salesById,
   insertSale,
+  // updateById,
+  deleteById,
 };
