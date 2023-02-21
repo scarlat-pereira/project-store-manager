@@ -58,6 +58,21 @@ describe('Testes unitários da camada Controller', function () {
       expect(res.status).to.have.been.calledWith(200);
       expect(res.json).to.have.been.calledWith(result);
     });
+
+     it('Deleta um produto com sucesso pelo id', async function () {
+    const req = { params: { id: 1} };
+    const res = {};
+
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+
+    sinon.stub(saleService, 'deleteById').resolves({ type: null, message: '' });
+
+    await saleControler.deleteById(req, res);
+
+       expect(res.status).to.have.been.calledWith(204);
+       expect(res.json).to.have.been.calledWith();
+  });
   });
 
   afterEach(function () {

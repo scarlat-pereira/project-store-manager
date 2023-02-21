@@ -13,11 +13,20 @@ describe('Testes unitários da camada Model', function () {
     // Assert
     expect(result).to.be.deep.equal(sales);
   });
+
   it('Recuperando uma sale pelo seu ID', async function () {
     sinon.stub(conn, 'execute').resolves([saleById]);
     const sale = await saleModel.salesById(1);
 
     expect(sale).to.be.deep.equal(saleById);
+  });
+
+    it('É possível deletar uma venda existente no banco de dados', async function () {
+    sinon.stub(conn, 'execute').resolves([{ affectedRows: 1 }]);
+      
+    const result = await saleModel.deleteById(1);
+      
+    expect(result.affectedRows).to.be.equal(1);
   });
 
     afterEach(function () {
