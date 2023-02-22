@@ -26,7 +26,13 @@ const saleById = [
   }
 ]
 
+const saleMock = {
+    "productId": 1,
+    "quantity": 10
+}
+
 module.exports = {
   sales,
   saleById,
+  saleMock,
 };
