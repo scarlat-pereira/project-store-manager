@@ -25,6 +25,32 @@ describe('Testes unitários da camada service', function () {
       expect(result.type).to.be.equal(result.null);
       expect(result.message).to.deep.equal(result.message);
     });
+
+      it('Retorna erro caso o ID do produto não exista', async function () {
+      sinon.stub(productModel, 'productById').resolves(undefined);
+
+      const result = await productService.productById(999);
+
+      expect(result.type).to.equal('INVALID_VALUE');
+      expect(result.message).to.equal('Product not found');
+      });
+    
+      it('É possível deletar um produto que esteja cadastrado no banco de dados', async function () {
+      sinon.stub(productModel, 'productById').resolves([products[0]]);
+      sinon.stub(productModel, 'deleteById').resolves(undefined);
+       
+      const result = await productService.deleteById(1);
+       
+      expect(result).to.deep.equal({ type: null, message: '' });
+      });
+    
+    it('Retorna mensagem de erro ao tentar deletar uma venda inexistente no banco de dados', async function () {
+      // sinon.stub(productModel, 'productById').resolves([]);
+
+      const result = await productService.deleteById(999);
+
+      expect(result).to.be.deep.equal({ type: 404, message: 'Product not found' });
+    });
   });
 
 //   describe('Cadastro de um produto', function () {
@@ -53,8 +79,7 @@ describe('Testes unitários da camada service', function () {
 //       expect(result.message).to.deep.equal(result.productById);
 //     });
 
-//     afterEach(function () {
-//       sinon.restore();
-//     });
-//   });
-});
+    afterEach(function () {
+      sinon.restore();
+    });
+  });

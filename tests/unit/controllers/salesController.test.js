@@ -5,10 +5,10 @@ const { expect } = chai;
 chai.use(sinonChai);
 const { saleService } = require('../../../src/services');
 const { saleControler } = require('../../../src/controllers');
-const {  sales, saleById } = require('./mocks/sales.controller.mock');
+const {  sales, saleById, invalidProductId, validateCorrect } = require('./mocks/sales.controller.mock');
 
 describe('Testes unitários da camada Controller', function () {
-  describe('Listando as sales', function() {
+  describe('Listando as sales', function () {
     it('Recuperando a lista de todas as sales', async function () {
       // arrange
       const res = {};
@@ -32,9 +32,9 @@ describe('Testes unitários da camada Controller', function () {
 
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
-        sinon
-          .stub(saleService, 'salesById')
-          .resolves({ type: 'INVALID_VALUE', message: 'Product not found' });
+      sinon
+        .stub(saleService, 'salesById')
+        .resolves({ type: 'INVALID_VALUE', message: 'Product not found' });
 
       await saleControler.salesById(req, res);
 
@@ -57,6 +57,24 @@ describe('Testes unitários da camada Controller', function () {
 
       expect(res.status).to.have.been.calledWith(200);
       expect(res.json).to.have.been.calledWith(result);
+    });
+
+    it('Retorna erro ao cadastrar, productId inexistente', async function () {
+      const res = {};
+      const req = {
+        body: invalidProductId,
+      };
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      sinon
+        .stub(saleService, 'insertSale')
+        .resolves({ type: 404, message: 'Product not found' });
+
+      await saleControler.insertSale(req, res);
+
+      expect(res.status).to.have.been.calledWith(404);
+      expect(res.json).to.have.been.calledWith({ message: 'Product not found' });
     });
 
      it('Deleta um produto com sucesso pelo id', async function () {
