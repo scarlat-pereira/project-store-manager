@@ -5,11 +5,11 @@ const { expect } = chai;
 chai.use(sinonChai);
 const { saleService } = require('../../../src/services');
 const { saleControler } = require('../../../src/controllers');
-const {  sales, saleById, invalidProductId, validateCorrect } = require('./mocks/sales.controller.mock');
+const {  sales, saleById, invalidProductId } = require('./mocks/sales.controller.mock');
 
 describe('Testes unitários da camada Controller', function () {
-  describe('Listando as sales', function () {
-    it('Recuperando a lista de todas as sales', async function () {
+  describe('Listando as vendas', function () {
+    it('Recuperando a lista de todas as vendas', async function () {
       // arrange
       const res = {};
       const req = {};
@@ -24,7 +24,7 @@ describe('Testes unitários da camada Controller', function () {
       expect(res.status).to.have.been.calledWith(200);
       expect(res.json).to.have.been.calledWith([sales][1]);
     });
-    it('Retorna erro caso o ID do produto não exista', async function () {
+    it('Retorna erro caso o ID da venda não exista', async function () {
       const res = {};
       const req = {
         params: { id: 4 },
@@ -41,7 +41,7 @@ describe('Testes unitários da camada Controller', function () {
       expect(res.status).to.have.been.calledWith(404);
       expect(res.json).to.have.been.calledWith({ message: 'Product not found' });
     });
-    it('Recuperando um produto pelo seu ID', async function () {
+    it('Recuperando uma venda pelo seu ID', async function () {
       const res = {};
       const req = {
         params: { id: 1 },
@@ -77,7 +77,7 @@ describe('Testes unitários da camada Controller', function () {
       expect(res.json).to.have.been.calledWith({ message: 'Product not found' });
     });
 
-     it('Deleta um produto com sucesso pelo id', async function () {
+     it('Deleta uma venda com sucesso pelo id', async function () {
     const req = { params: { id: 1} };
     const res = {};
 

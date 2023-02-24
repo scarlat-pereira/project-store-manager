@@ -3,7 +3,12 @@ const sinon = require('sinon');
 const { saleService } = require('../../../src/services');
 const { saleModel } = require('../../../src/models');
 const conn = require('../../../src/models/connection');
-const { sales, saleById, invalidProductId, invalidQuantity, quantityRequired, response, validateCorrect } = require('./mocks/sales.service.mock');
+const { sales,
+  saleById,
+  invalidProductId,
+  invalidQuantity,
+  quantityRequired,
+ } = require('./mocks/sales.service.mock');
 
 describe('Testes unitários da camada service', function () {
   describe('Listagem de Vendas', function () {
