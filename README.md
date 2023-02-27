@@ -497,6 +497,8 @@ Neste projeto, desenvolvi as seguintes habilidades:
   <br>
 </details>
 
+---
+
 ## 15 - Desenvolva testes que cubram no mínimo 35% das camadas da sua aplicação
 
 - Seus arquivos de teste devem ficar no diretório `tests/unit`, como é descrito em [Para escrever seus próprios arquivos de teste](#para-escrever-seus-própios-arquivos-de-teste);
@@ -617,8 +619,26 @@ Neste projeto, desenvolvi as seguintes habilidades:
 ]
 ```
    - **[Será validado que é possível buscar todos os produtos quando passa a busca vazia]** - Se a buscar for vazia o resultado retornado deverá ser conforme exibido abaixo, com um status http `200`:
- 
 
+```json
+  // GET /products/search?q=
+[
+  {
+    "id": 1,
+    "name": "Martelo de Thor",
+  },
+  {
+    "id": 2,
+    "name": "Traje de encolhimento",
+  }
+  /* ... */
+]
+```
+ 
+  <br>
+</details>
+
+---
 
 
 ## 19 - Desenvolva testes que cubram no mínimo 50% das camadas da sua aplicação
