@@ -4,7 +4,7 @@ Este projeto contém os requisitos realizados por _[Scarlat Pereira](https://www
 
 Neste projeto desenvolvi uma API utilizando a arquitetura MSC (model-service-controller)!
 
-A API criada tinha como base um sistema de gerenciamento de vendas no formato dropshipping em que é possível criar, visualizar, deletar e 
+A API criada tinha como base um sistema de gerenciamento de lojas no formato dropshipping em que é possível criar, visualizar, deletar e 
 atualizar produtos e vendas. Para gestão do banco de dados, utilizei o MySQL. Além disso, a API desenvolvida foi RESTful.
 
 ## Arquitetura de Software - MSC
